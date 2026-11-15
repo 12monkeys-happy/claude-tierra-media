@@ -2,9 +2,11 @@
 
 Un tema para Claude Code: un mapa de la Tierra Media dibujado en pergamino detrás del chat, con la Compañía caminando de Rivendel a Amon Hen por la orilla de la ventana.
 
-![El tema en la app de escritorio](preview.png)
+![La Compañía caminando por el mapa, detrás del chat](demo.gif)
 
-*La imagen es una recreación de la interfaz, con sesiones y conversación inventadas.*
+[Ver el video completo (MP4, 16 s)](demo.mp4)
+
+*El video es una recreación de la interfaz, con sesiones y conversación inventadas.*
 
 ## Qué hace
 
