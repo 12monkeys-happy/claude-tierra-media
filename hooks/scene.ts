@@ -241,6 +241,43 @@ function rose(x: number, y: number, r: number): string {
   )
 }
 
+/** The map speaks two languages; the drawing is the same in both. */
+export type Lang = 'en' | 'es'
+
+type Names = {
+  misty: string
+  hollin: string
+  dunland: string
+  shire: string
+  weathertop: string
+  rivendell: string
+  title: string
+  subtitle: string
+}
+
+const NAMES: Readonly<Record<Lang, Names>> = {
+  en: {
+    misty: 'MISTY MOUNTAINS',
+    hollin: 'Hollin',
+    dunland: 'Dunland',
+    shire: 'The Shire',
+    weathertop: 'Weathertop',
+    rivendell: 'Rivendell',
+    title: 'MIDDLE-EARTH',
+    subtitle: 'The road of the Nine, from Rivendell to Amon Hen',
+  },
+  es: {
+    misty: 'MONTAÑAS NUBLADAS',
+    hollin: 'Acebeda',
+    dunland: 'Tierras Pardas',
+    shire: 'La Comarca',
+    weathertop: 'Cima de los Vientos',
+    rivendell: 'Rivendel',
+    title: 'TIERRA MEDIA',
+    subtitle: 'El camino de los Nueve, de Rivendel a Amon Hen',
+  },
+}
+
 // The river the last leg follows, at the right edge of the sheet.
 const ANDUIN =
   'M1482 0C1452 120 1512 220 1482 330C1457 430 1502 520 1512 620C1520 700 1552 760 1562 850C1570 920 1590 960 1596 1000'
@@ -248,7 +285,7 @@ const ANDUIN =
 // THE SHEET IS LAID OUT FOR THE DESKTOP WINDOW: the session list hides the left fifth, the chat column the middle.
 // So the west (the sea, the Shire, the title) stands in a strip from 220 to 600, the road of the Nine in a strip from
 // 1250 to 1600, and between them lies open country with a road and a river: little ink behind the words.
-export function tierraMediaSvg(): string {
+export function tierraMediaSvg(lang: Lang = 'en'): string {
   const random = seeded(1954)
   const { css, seconds } = walk()
   const peaks = [
@@ -307,17 +344,18 @@ export function tierraMediaSvg(): string {
     wood(1442, 722, 40, 40, 12, '#b3b472', random) + // Fangorn
     wood(1470, 584, 32, 20, 11, '#dcc463', random) + // Lothlórien, golden
     wood(458, 322, 24, 15, 11, '#b9b77c', random) // Bosque Viejo
+  const t = NAMES[lang]
   const names =
     land(432, 470, 'ERIADOR', 26) +
     land(1400, 884, 'ROHAN', 22) +
-    land(1424, 300, 'MONTAÑAS NUBLADAS', 12, 84, 0.8) +
-    land(1272, 300, 'Acebeda', 13, -86, 0.8) +
+    land(1424, 300, t.misty, 12, 84, 0.8) +
+    land(1272, 300, t.hollin, 13, -86, 0.8) +
     land(1536, 420, 'Anduin', 13, 80, 0.8) +
-    land(470, 760, 'Tierras Pardas', 14, 0, 0.6) +
-    place(385, 290, 'La Comarca', 0, -10, 'middle') +
+    land(470, 760, t.dunland, 14, 0, 0.6) +
+    place(385, 290, t.shire, 0, -10, 'middle') +
     place(490, 276, 'Bree', 0, -10, 'middle') +
-    place(548, 264, 'Cima de los Vientos', 40, 27, 'end') +
-    place(1285, 190, 'Rivendel', 0, -11, 'middle') +
+    place(548, 264, t.weathertop, 40, 27, 'end') +
+    place(1285, 190, t.rivendell, 0, -11, 'middle') +
     place(1362, 446, 'Caradhras', 24, -4) +
     place(1340, 527, 'Moria', -9, 18, 'end') +
     place(1470, 566, 'Lothlórien', 0, -10, 'middle') +
@@ -328,8 +366,8 @@ export function tierraMediaSvg(): string {
     `<g transform="translate(416 880)">` +
     `<path d="M-166 -32H166M-166 28H166" stroke="${INK}" stroke-width="1" opacity="0.6"/>` +
     `<path d="M-166 -36H166M-166 32H166" stroke="${INK}" stroke-width="0.5" opacity="0.6"/>` +
-    `<text class="tm-t" y="0" font-size="30" letter-spacing="7" text-anchor="middle" style="font-style:normal">TIERRA MEDIA</text>` +
-    `<text class="tm-t" y="20" font-size="12" text-anchor="middle" opacity="0.8">El camino de los Nueve, de Rivendel a Amon Hen</text></g>`
+    `<text class="tm-t" y="0" font-size="30" letter-spacing="7" text-anchor="middle" style="font-style:normal">${t.title}</text>` +
+    `<text class="tm-t" y="20" font-size="12" text-anchor="middle" opacity="0.8">${t.subtitle}</text></g>`
   const crows = `<g class="tm-crows"><path d="M0 0l4 3l4 -3M14 8l4 3l4 -3M-10 12l4 3l4 -3M6 20l4 3l4 -3M24 -4l4 3l4 -3M-4 28l4 3l4 -3" fill="none" stroke="#2c2620" stroke-width="1.3" stroke-linecap="round"/></g>`
 
   return (

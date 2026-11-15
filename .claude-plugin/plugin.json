@@ -1,1 +1,15 @@
-{ "name": "tierra-media", "version": "0.1.0", "license": "MIT", "description": "El mapa de la Tierra Media en pergamino detrás del chat, con la Compañía caminando de Rivendel a Amon Hen." }
+{
+  "name": "tierra-media",
+  "version": "0.2.0",
+  "license": "MIT",
+  "description": "A parchment map of Middle-earth behind the chat, with the Fellowship walking from Rivendell to Amon Hen. In English or Spanish.",
+  "userConfig": {
+    "language": {
+      "type": "string",
+      "title": "Map language",
+      "description": "The language of the map's labels and of the command's replies: en (English) or es (español).",
+      "default": "en",
+      "options": ["en", "es"]
+    }
+  }
+}
