@@ -45,6 +45,10 @@ Si tienes otro tema activo (por ejemplo uno de `theme-examples`), apágalo prime
 - `hooks/register.tsx`: el comando y el dibujo del fondo.
 - `hooks/scene.ts`: el mapa, un solo SVG animado con CSS, sin scripts ni imágenes externas.
 
+## Licencia
+
+MIT. Ver `LICENSE`.
+
 ## Nota
 
 Trabajo de fan, hecho por gusto. El dibujo es original; los nombres de lugares vienen de la obra de J. R. R. Tolkien. No está afiliado ni respaldado por Tolkien Estate ni por ningún titular de derechos.
